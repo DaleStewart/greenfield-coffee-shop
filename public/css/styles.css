@@ -190,8 +190,8 @@ body {
   border: 1px solid var(--coffee-accent);
 }
 
-.checkout-line-items .border-bottom:last-child {
-  border-bottom: 0 !important;
+.checkout-line-items > .border-bottom:last-child {
+  border-bottom: 0;
 }
 
 /* ----- Responsive Tweaks ----- */

@@ -9,7 +9,7 @@
 
   <section class="py-5">
     <div class="container">
-      <div id="checkoutSuccess" class="alert alert-success checkout-success-alert" role="status" aria-live="polite" hidden>
+      <div id="checkoutSuccess" class="alert alert-success checkout-success-alert" role="alert" aria-live="assertive" tabindex="0" hidden>
         <i class="bi bi-check-circle-fill me-2"></i>Your order has been placed! (Demo mode)
       </div>
 
@@ -53,22 +53,22 @@
                 <div class="row g-3">
                   <div class="col-md-6">
                     <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Jane Doe">
+                    <input type="text" class="form-control" id="fullName" placeholder="Jane Doe" required aria-required="true">
                   </div>
                   <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="jane@example.com">
+                    <input type="email" class="form-control" id="email" placeholder="jane@example.com" required aria-required="true">
                   </div>
                   <div class="col-md-6">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567">
+                    <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567" required aria-required="true">
                   </div>
                   <div class="col-md-6">
                     <label class="form-label d-block">Fulfillment</label>
                     <div class="btn-group w-100" role="group" aria-label="Pickup or delivery">
-                      <input type="radio" class="btn-check" name="fulfillment" id="pickup" autocomplete="off" checked>
+                      <input type="radio" class="btn-check" name="fulfillment" id="pickup" value="pickup" autocomplete="off" checked>
                       <label class="btn btn-outline-coffee" for="pickup">Pickup</label>
-                      <input type="radio" class="btn-check" name="fulfillment" id="delivery" autocomplete="off">
+                      <input type="radio" class="btn-check" name="fulfillment" id="delivery" value="delivery" autocomplete="off">
                       <label class="btn btn-outline-coffee" for="delivery">Delivery</label>
                     </div>
                   </div>
@@ -78,15 +78,15 @@
                 <div class="row g-3">
                   <div class="col-12">
                     <label for="cardNumber" class="form-label">Card Number</label>
-                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric">
+                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric" required aria-required="true">
                   </div>
                   <div class="col-md-6">
                     <label for="expiry" class="form-label">Expiry</label>
-                    <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+                    <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required aria-required="true">
                   </div>
                   <div class="col-md-6">
                     <label for="cvc" class="form-label">CVC</label>
-                    <input type="text" class="form-control" id="cvc" placeholder="123" inputmode="numeric">
+                    <input type="text" class="form-control" id="cvc" placeholder="123" inputmode="numeric" required aria-required="true">
                   </div>
                 </div>
 
@@ -105,13 +105,21 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const checkoutForm = document.getElementById('checkoutForm');
       const placeOrderBtn = document.getElementById('placeOrderBtn');
       const successBanner = document.getElementById('checkoutSuccess');
 
-      if (!placeOrderBtn || !successBanner) return;
+      if (!checkoutForm || !placeOrderBtn || !successBanner) return;
 
       placeOrderBtn.addEventListener('click', () => {
+        if (!checkoutForm.checkValidity()) {
+          checkoutForm.reportValidity();
+          return;
+        }
+
         successBanner.hidden = false;
+        successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        successBanner.focus();
         placeOrderBtn.disabled = true;
         placeOrderBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Order Placed';
       });
