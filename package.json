@@ -1,0 +1,17 @@
+{
+  "name": "greenfield-coffee-shop",
+  "version": "1.0.0",
+  "description": "A greenfield demo application for a modern coffee shop, built with Node.js, Express, and EJS.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": ["coffee", "shop", "demo", "express", "ejs"],
+  "author": "Dale Stewart",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}

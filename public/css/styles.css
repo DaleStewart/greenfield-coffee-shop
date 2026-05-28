@@ -1,0 +1,200 @@
+/* ===================================
+   Greenfield Coffee Shop — Custom Styles
+   =================================== */
+
+/* ----- Color Variables ----- */
+:root {
+  --coffee-dark: #3c2415;
+  --coffee-medium: #6f4e37;
+  --coffee-light: #a0785a;
+  --coffee-accent: #d4a574;
+  --cream: #faf6f1;
+  --cream-dark: #f0e6d8;
+  --text-dark: #2c1810;
+  --text-muted-light: #b8a99a;
+}
+
+/* ----- Global ----- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+}
+
+/* ----- Navbar ----- */
+.bg-dark-brown {
+  background-color: var(--coffee-dark) !important;
+}
+
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar .nav-link:hover {
+  color: var(--coffee-accent) !important;
+}
+
+/* ----- Hero Sections ----- */
+.hero-section {
+  background: linear-gradient(rgba(60, 36, 21, 0.7), rgba(60, 36, 21, 0.7)),
+    url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600&h=900&fit=crop') center/cover no-repeat;
+  min-height: 80vh;
+  padding: 6rem 0;
+}
+
+.about-hero {
+  background: linear-gradient(rgba(60, 36, 21, 0.75), rgba(60, 36, 21, 0.75)),
+    url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1600&h=600&fit=crop') center/cover no-repeat;
+  min-height: 40vh;
+  padding: 4rem 0;
+}
+
+.order-hero {
+  background: linear-gradient(rgba(60, 36, 21, 0.75), rgba(60, 36, 21, 0.75)),
+    url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&h=600&fit=crop') center/cover no-repeat;
+  min-height: 40vh;
+  padding: 4rem 0;
+}
+
+/* ----- Section Titles ----- */
+.section-title {
+  color: var(--coffee-dark);
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--coffee-accent);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* ----- Coffee Cards ----- */
+.coffee-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coffee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(60, 36, 21, 0.15) !important;
+}
+
+.coffee-card .card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+/* ----- Buttons ----- */
+.btn-coffee {
+  background-color: var(--coffee-medium);
+  border-color: var(--coffee-medium);
+  color: #fff;
+}
+
+.btn-coffee:hover {
+  background-color: var(--coffee-dark);
+  border-color: var(--coffee-dark);
+  color: #fff;
+}
+
+.btn-outline-coffee {
+  color: var(--coffee-medium);
+  border-color: var(--coffee-medium);
+}
+
+.btn-outline-coffee:hover,
+.btn-outline-coffee.active {
+  background-color: var(--coffee-medium);
+  border-color: var(--coffee-medium);
+  color: #fff;
+}
+
+/* ----- Badges ----- */
+.bg-coffee-badge {
+  background-color: var(--coffee-accent) !important;
+  color: var(--coffee-dark);
+  font-weight: 600;
+}
+
+/* ----- Price Tags ----- */
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--coffee-medium);
+}
+
+/* ----- Text Utilities ----- */
+.text-coffee {
+  color: var(--coffee-medium) !important;
+}
+
+.text-muted-light {
+  color: var(--text-muted-light) !important;
+}
+
+/* ----- Background Utilities ----- */
+.bg-light-cream {
+  background-color: var(--cream) !important;
+}
+
+/* ----- Footer ----- */
+.footer-link {
+  color: var(--text-muted-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--coffee-accent);
+}
+
+/* ----- Team Cards ----- */
+.team-card {
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.team-card:hover {
+  background-color: var(--cream);
+}
+
+/* ----- Filter Buttons ----- */
+.filter-btn {
+  border-radius: 20px !important;
+  padding: 0.4rem 1.5rem;
+  margin: 0 0.25rem;
+}
+
+/* ----- Responsive Tweaks ----- */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+    padding: 4rem 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-hero,
+  .order-hero {
+    min-height: 30vh;
+    padding: 3rem 0;
+  }
+}

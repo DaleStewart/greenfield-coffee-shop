@@ -1,0 +1,105 @@
+<%- include('partials/header') %>
+
+  <!-- Order Hero -->
+  <section class="order-hero d-flex align-items-center">
+    <div class="container text-center text-white">
+      <h1 class="display-4 fw-bold">Our Menu</h1>
+      <p class="lead">Find your perfect cup. Crafted with care, served with a smile.</p>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="py-5">
+    <div class="container">
+
+      <!-- Category Filter Buttons -->
+      <div class="text-center mb-4">
+        <div class="btn-group" role="group" aria-label="Filter by category">
+          <button type="button" class="btn btn-coffee filter-btn active" data-category="all">All</button>
+          <button type="button" class="btn btn-outline-coffee filter-btn" data-category="Hot">Hot</button>
+          <button type="button" class="btn btn-outline-coffee filter-btn" data-category="Iced">Iced</button>
+          <button type="button" class="btn btn-outline-coffee filter-btn" data-category="Specialty">Specialty</button>
+        </div>
+      </div>
+
+      <!-- Coffee Cards Grid -->
+      <div class="row g-4" id="coffeeGrid">
+        <% coffees.forEach(coffee => { %>
+          <div class="col-md-6 col-lg-4 col-xl-3 coffee-item" data-category="<%= coffee.category %>">
+            <div class="card coffee-card h-100 shadow-sm">
+              <img src="<%= coffee.image %>" class="card-img-top" alt="<%= coffee.name %>">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h5 class="card-title mb-0"><%= coffee.name %></h5>
+                  <span class="badge bg-coffee-badge"><%= coffee.category %></span>
+                </div>
+                <p class="card-text text-muted flex-grow-1"><%= coffee.description %></p>
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                  <span class="price-tag">$<%= coffee.price.toFixed(2) %></span>
+                  <button class="btn btn-coffee btn-sm add-to-order-btn" data-id="<%= coffee.id %>" data-name="<%= coffee.name %>">
+                    <i class="bi bi-plus-circle me-1"></i>Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <!-- Placeholder message for no cart -->
+      <div class="text-center mt-5 p-4 bg-light-cream rounded" id="orderNote">
+        <i class="bi bi-info-circle text-coffee me-2"></i>
+        <span class="text-muted">Shopping cart & checkout coming soon!</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Client-side filtering script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const coffeeItems = document.querySelectorAll('.coffee-item');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          filterButtons.forEach(b => {
+            b.classList.remove('active', 'btn-coffee');
+            b.classList.add('btn-outline-coffee');
+          });
+          btn.classList.add('active', 'btn-coffee');
+          btn.classList.remove('btn-outline-coffee');
+
+          const category = btn.dataset.category;
+
+          // Show/hide coffee items
+          coffeeItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // "Add to Order" buttons — placeholder behavior
+      const addButtons = document.querySelectorAll('.add-to-order-btn');
+      addButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.dataset.name;
+          btn.innerHTML = '<i class="bi bi-check-circle me-1"></i>Added!';
+          btn.classList.remove('btn-coffee');
+          btn.classList.add('btn-success');
+          setTimeout(() => {
+            btn.innerHTML = '<i class="bi bi-plus-circle me-1"></i>Add to Order';
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-coffee');
+          }, 1500);
+        });
+      });
+    });
+  </script>
+
+<%- include('partials/footer') %>
