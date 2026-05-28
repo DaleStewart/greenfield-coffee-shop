@@ -181,6 +181,19 @@ body {
   margin: 0 0.25rem;
 }
 
+/* ----- Checkout ----- */
+.checkout-summary-card {
+  border: 1px solid var(--cream-dark);
+}
+
+.checkout-success-alert {
+  border: 1px solid var(--coffee-accent);
+}
+
+.checkout-line-items > .border-bottom:last-child {
+  border-bottom: 0;
+}
+
 /* ----- Responsive Tweaks ----- */
 @media (max-width: 768px) {
   .hero-section {
@@ -196,5 +209,9 @@ body {
   .order-hero {
     min-height: 30vh;
     padding: 3rem 0;
+  }
+
+  .checkout-summary-card {
+    margin-bottom: 1rem;
   }
 }
