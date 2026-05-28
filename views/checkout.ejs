@@ -1,0 +1,121 @@
+<%- include('partials/header') %>
+
+  <section class="order-hero d-flex align-items-center">
+    <div class="container text-center text-white">
+      <h1 class="display-4 fw-bold">Checkout</h1>
+      <p class="lead">Review your order and complete your details.</p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div id="checkoutSuccess" class="alert alert-success checkout-success-alert" role="status" aria-live="polite" hidden>
+        <i class="bi bi-check-circle-fill me-2"></i>Your order has been placed! (Demo mode)
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="card coffee-card shadow-sm h-100 checkout-summary-card">
+            <div class="card-body">
+              <h2 class="h4 mb-3">Order Summary</h2>
+              <div class="checkout-line-items mb-3">
+                <% orderItems.forEach(item => { %>
+                  <div class="d-flex justify-content-between align-items-start py-2 border-bottom">
+                    <div>
+                      <div class="fw-semibold"><%= item.name %></div>
+                      <small class="text-muted">Qty: <%= item.quantity %></small>
+                    </div>
+                    <span>$<%= (item.price * item.quantity).toFixed(2) %></span>
+                  </div>
+                <% }) %>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Subtotal</span>
+                <span>$<%= subtotal.toFixed(2) %></span>
+              </div>
+              <div class="d-flex justify-content-between mb-3">
+                <span class="text-muted">Tax</span>
+                <span>$<%= tax.toFixed(2) %></span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                <strong>Total</strong>
+                <span class="price-tag">$<%= total.toFixed(2) %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">Customer Information</h2>
+              <form id="checkoutForm" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Jane Doe">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="jane@example.com">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label d-block">Fulfillment</label>
+                    <div class="btn-group w-100" role="group" aria-label="Pickup or delivery">
+                      <input type="radio" class="btn-check" name="fulfillment" id="pickup" autocomplete="off" checked>
+                      <label class="btn btn-outline-coffee" for="pickup">Pickup</label>
+                      <input type="radio" class="btn-check" name="fulfillment" id="delivery" autocomplete="off">
+                      <label class="btn btn-outline-coffee" for="delivery">Delivery</label>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="h5 mt-4 mb-3">Payment (Demo Only)</h3>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="expiry" class="form-label">Expiry</label>
+                    <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="cvc" class="form-label">CVC</label>
+                    <input type="text" class="form-control" id="cvc" placeholder="123" inputmode="numeric">
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <button type="button" id="placeOrderBtn" class="btn btn-coffee btn-lg w-100">
+                    <i class="bi bi-bag-check-fill me-2"></i>Place Order
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const placeOrderBtn = document.getElementById('placeOrderBtn');
+      const successBanner = document.getElementById('checkoutSuccess');
+
+      if (!placeOrderBtn || !successBanner) return;
+
+      placeOrderBtn.addEventListener('click', () => {
+        successBanner.hidden = false;
+        placeOrderBtn.disabled = true;
+        placeOrderBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Order Placed';
+      });
+    });
+  </script>
+
+<%- include('partials/footer') %>

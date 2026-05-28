@@ -21,4 +21,26 @@ router.get('/order', (req, res) => {
   res.render('order', { title: 'Order Coffee', coffees });
 });
 
+// Checkout page — UI-only mock order summary
+router.get('/checkout', (req, res) => {
+  const orderItems = coffees.slice(0, 2).map(coffee => ({
+    id: coffee.id,
+    name: coffee.name,
+    quantity: 1,
+    price: coffee.price
+  }));
+
+  const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const tax = subtotal * 0.08;
+  const total = subtotal + tax;
+
+  res.render('checkout', {
+    title: 'Checkout',
+    orderItems,
+    subtotal,
+    tax,
+    total
+  });
+});
+
 module.exports = router;
