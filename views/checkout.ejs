@@ -1,0 +1,120 @@
+<%- include('partials/header') %>
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h1 class="section-title">Checkout</h1>
+      <p class="text-muted">Pickup only — your order will be ready soon.</p>
+    </div>
+
+    <div id="emptyCartState" class="text-center p-5 bg-light-cream rounded d-none">
+      <i class="bi bi-basket text-coffee fs-1 d-block mb-3"></i>
+      <h3 class="h4 mb-2">Your cart is empty</h3>
+      <p class="text-muted mb-4">Add a few drinks to get started.</p>
+      <a class="btn btn-coffee" href="/order"><i class="bi bi-cup-hot me-1"></i>Back to Menu</a>
+    </div>
+
+    <div id="checkoutContent" class="row g-4 d-none">
+      <div class="col-lg-7">
+        <form id="checkoutForm">
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">Contact</h2>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label" for="customerName">Name</label>
+                  <input class="form-control" id="customerName" name="name" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="customerPhone">Phone</label>
+                  <input class="form-control" id="customerPhone" name="phone" type="tel" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="customerEmail">Email</label>
+                  <input class="form-control" id="customerEmail" name="email" type="email" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">Pickup Details</h2>
+              <div class="bg-light-cream border rounded p-3 mb-3">
+                <div class="small text-muted mb-1">Pickup Location</div>
+                <strong>Greenfield Coffee Shop</strong><br>
+                <span class="text-muted">123 Brew Lane, Greenfield, NY 10001</span>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="pickupTime">Pickup time</label>
+                <select class="form-select" id="pickupTime" name="pickupTime" required>
+                  <option value="">Select a pickup time</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="pickupNotes">Notes (optional)</label>
+                <textarea class="form-control" id="pickupNotes" name="notes" rows="3" placeholder="Any allergies or pickup notes?"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm payment-card disabled-look mb-3">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-2">Payment</h2>
+              <p class="small text-muted mb-3">Demo only — no payment is processed.</p>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label" for="cardNumber">Card number</label>
+                  <input class="form-control" id="cardNumber" type="text" placeholder="4242 4242 4242 4242" readonly tabindex="-1">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="cardExpiry">Expiry</label>
+                  <input class="form-control" id="cardExpiry" type="text" placeholder="MM/YY" readonly tabindex="-1">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="cardCvc">CVC</label>
+                  <input class="form-control" id="cardCvc" type="text" placeholder="123" readonly tabindex="-1">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="cardholderName">Cardholder</label>
+                  <input class="form-control" id="cardholderName" type="text" placeholder="Name on card" readonly tabindex="-1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card border-0 shadow-sm checkout-summary">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">Order Summary</h2>
+            <div id="cartItems"></div>
+            <div class="pt-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Subtotal</span>
+                <span id="summarySubtotal">$0.00</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Tax (8.5%)</span>
+                <span id="summaryTax">$0.00</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                <span>Total</span>
+                <span id="summaryTotal">$0.00</span>
+              </div>
+              <button id="placeOrderBtn" type="submit" form="checkoutForm" class="btn btn-coffee w-100" disabled>
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="/js/checkout.js"></script>
+
+<%- include('partials/footer') %>

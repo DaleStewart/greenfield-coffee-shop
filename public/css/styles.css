@@ -41,6 +41,29 @@ body {
   color: var(--coffee-accent) !important;
 }
 
+.nav-cart-link {
+  position: relative;
+}
+
+.cart-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 0.35rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background-color: var(--coffee-accent);
+  color: var(--coffee-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.cart-count-badge.is-empty {
+  opacity: 0.6;
+}
+
 /* ----- Hero Sections ----- */
 .hero-section {
   background: linear-gradient(rgba(60, 36, 21, 0.7), rgba(60, 36, 21, 0.7)),
@@ -181,6 +204,34 @@ body {
   margin: 0 0.25rem;
 }
 
+.checkout-summary {
+  position: sticky;
+  top: 6rem;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.qty-stepper .btn {
+  border: 0;
+  border-radius: 0;
+}
+
+.payment-card.disabled-look {
+  background: linear-gradient(180deg, #fbf7f3 0%, #f4ece3 100%);
+}
+
+.payment-card.disabled-look .form-control {
+  background-color: #f3efe9;
+  border-color: #e4d7c8;
+  color: #7b6a58;
+}
+
 /* ----- Responsive Tweaks ----- */
 @media (max-width: 768px) {
   .hero-section {
@@ -196,5 +247,10 @@ body {
   .order-hero {
     min-height: 30vh;
     padding: 3rem 0;
+  }
+
+  .checkout-summary {
+    position: static;
+    top: auto;
   }
 }

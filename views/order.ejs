@@ -36,7 +36,12 @@
                 <p class="card-text text-muted flex-grow-1"><%= coffee.description %></p>
                 <div class="d-flex justify-content-between align-items-center mt-auto">
                   <span class="price-tag">$<%= coffee.price.toFixed(2) %></span>
-                  <button class="btn btn-coffee btn-sm add-to-order-btn" data-id="<%= coffee.id %>" data-name="<%= coffee.name %>">
+                  <button
+                    class="btn btn-coffee btn-sm add-to-order-btn"
+                    data-id="<%= coffee.id %>"
+                    data-name="<%= coffee.name %>"
+                    data-price="<%= coffee.price %>"
+                    data-image="<%= coffee.image %>">
                     <i class="bi bi-plus-circle me-1"></i>Add to Order
                   </button>
                 </div>
@@ -46,60 +51,15 @@
         <% }) %>
       </div>
 
-      <!-- Placeholder message for no cart -->
+      <!-- Checkout prompt -->
       <div class="text-center mt-5 p-4 bg-light-cream rounded" id="orderNote">
-        <i class="bi bi-info-circle text-coffee me-2"></i>
-        <span class="text-muted">Shopping cart & checkout coming soon!</span>
+        <i class="bi bi-bag-check text-coffee me-2"></i>
+        <span class="text-muted">Ready when you are. Add drinks, then head to checkout.</span>
       </div>
 
     </div>
   </section>
 
-  <!-- Client-side filtering script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const coffeeItems = document.querySelectorAll('.coffee-item');
-
-      filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Update active button
-          filterButtons.forEach(b => {
-            b.classList.remove('active', 'btn-coffee');
-            b.classList.add('btn-outline-coffee');
-          });
-          btn.classList.add('active', 'btn-coffee');
-          btn.classList.remove('btn-outline-coffee');
-
-          const category = btn.dataset.category;
-
-          // Show/hide coffee items
-          coffeeItems.forEach(item => {
-            if (category === 'all' || item.dataset.category === category) {
-              item.style.display = '';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-        });
-      });
-
-      // "Add to Order" buttons — placeholder behavior
-      const addButtons = document.querySelectorAll('.add-to-order-btn');
-      addButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const name = btn.dataset.name;
-          btn.innerHTML = '<i class="bi bi-check-circle me-1"></i>Added!';
-          btn.classList.remove('btn-coffee');
-          btn.classList.add('btn-success');
-          setTimeout(() => {
-            btn.innerHTML = '<i class="bi bi-plus-circle me-1"></i>Add to Order';
-            btn.classList.remove('btn-success');
-            btn.classList.add('btn-coffee');
-          }, 1500);
-        });
-      });
-    });
-  </script>
+  <script src="/js/order.js"></script>
 
 <%- include('partials/footer') %>
