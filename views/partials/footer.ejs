@@ -12,6 +12,7 @@
             <li><a href="/" class="footer-link">Home</a></li>
             <li><a href="/about" class="footer-link">About Us</a></li>
             <li><a href="/order" class="footer-link">Order Coffee</a></li>
+            <li><a href="/checkout" class="footer-link">Checkout</a></li>
           </ul>
         </div>
         <div class="col-md-4">
@@ -27,6 +28,23 @@
       <p class="text-center text-muted-light mb-0">&copy; 2026 Greenfield Coffee. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="/js/cart.js"></script>
+  <script>
+    (() => {
+      const badge = document.getElementById('cartCountBadge');
+      if (!badge || !window.Cart) return;
+
+      const renderCount = () => {
+        const count = window.Cart.count();
+        badge.textContent = count;
+        badge.classList.toggle('is-empty', count === 0);
+      };
+
+      window.addEventListener('cart:changed', renderCount);
+      renderCount();
+    })();
+  </script>
 
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
